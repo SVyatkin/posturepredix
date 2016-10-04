@@ -1,0 +1,13 @@
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/domain/DeviceId.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/Application.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/service/LocationService.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/config/CloudFoundryDataSourceConfiguration.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/service/WebSocketServerEndPoint.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/web/CustomerApiController.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/config/ServicesConfiguration.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/web/CacheController.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/domain/Location.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/domain/PosturePredix.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/service/CustomerService.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/domain/Customer.java
+/predix/posturepredix/src/main/java/com/altran/acs/predix/labs/data/jpa/web/LocationApiController.java

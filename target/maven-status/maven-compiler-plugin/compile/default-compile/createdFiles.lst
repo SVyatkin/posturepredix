@@ -1,0 +1,12 @@
+com/altran/acs/predix/labs/data/jpa/domain/DeviceId.class
+com/altran/acs/predix/labs/data/jpa/service/WebSocketServerEndPoint.class
+com/altran/acs/predix/labs/data/jpa/domain/Customer.class
+com/altran/acs/predix/labs/data/jpa/web/CustomerApiController.class
+com/altran/acs/predix/labs/data/jpa/domain/Location.class
+com/altran/acs/predix/labs/data/jpa/service/LocationService.class
+com/altran/acs/predix/labs/data/jpa/web/LocationApiController.class
+com/altran/acs/predix/labs/data/jpa/Application.class
+com/altran/acs/predix/labs/data/jpa/config/CloudFoundryDataSourceConfiguration.class
+com/altran/acs/predix/labs/data/jpa/service/CustomerService.class
+com/altran/acs/predix/labs/data/jpa/web/CacheController.class
+com/altran/acs/predix/labs/data/jpa/config/ServicesConfiguration.class
