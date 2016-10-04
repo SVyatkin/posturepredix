@@ -2,7 +2,7 @@
 
 INSERT INTO customer(id, name, phone, tstamp) values( nextval( 'hibernate_sequence') , 'Sam','(925)-123-4567', NOW());
 INSERT INTO customer(id, name, phone, tstamp) values( nextval( 'hibernate_sequence') , 'Sergey','(925)-223-4567', NOW());
-INSERT INTO customer(id, name, phone, tstamp) values( nextval( 'hibernate_sequence') , 'Bob', ,'(925)-323-4567', NOW());
+INSERT INTO customer(id, name, phone, tstamp) values( nextval( 'hibernate_sequence') , 'Bob' ,'(925)-323-4567', NOW());
 INSERT INTO customer(id, name, phone, tstamp) values( nextval( 'hibernate_sequence') , 'Robert','(925)-423-4567', NOW());
 
 -- location table

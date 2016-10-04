@@ -56,7 +56,7 @@ public class WebSocketServerEndPoint {
 
 			// Please use postgres Id from manifest.yml file
 
-			return cloud.getServiceConnector("postgres_sv", DataSource.class, null);
+			return cloud.getServiceConnector("posture-postgres2", DataSource.class, null);
 
 	}
 
@@ -71,7 +71,7 @@ public class WebSocketServerEndPoint {
 	}
 
 	@OnMessage
-	public void onMessage(@PathParam(value = "id") String id, String message, Session session)
+	public void onMessage(@PathParam(value = "nodeId") String id, String message, Session session)
 			throws SQLException, IOException {
 		logger.info("*** Websocket Message : " + message);
 		PosturePredix posture;
@@ -81,6 +81,7 @@ public class WebSocketServerEndPoint {
 			String tab [] = id.split("_");
 			if(tab.length==2){
 				infoType = tab[1];
+				System.out.println("tab !!");
 			}		
 			
 			switch (infoType) {
