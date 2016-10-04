@@ -3,7 +3,6 @@ applications:
   - name: posturepredix
     buildpack: java_buildpack
     path: target/posturepredix-1.0.0.jar
-services: 
-    - posture-postgres2  
+services:
+    - posture-postgres2
     - posture-redis
-

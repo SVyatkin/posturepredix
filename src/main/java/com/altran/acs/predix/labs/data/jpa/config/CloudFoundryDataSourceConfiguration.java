@@ -23,8 +23,7 @@ import com.altran.acs.predix.labs.data.jpa.domain.Customer;
 @Configuration
 public class CloudFoundryDataSourceConfiguration extends AbstractCloudConfig  {
 
-    //jbl not used ?
-	@Bean
+    @Bean
     public DataSource dataSource() {
     	DataSource ds = connectionFactory().dataSource();
     	try {
@@ -49,8 +48,6 @@ public class CloudFoundryDataSourceConfiguration extends AbstractCloudConfig  {
         return ro;
     }
     
-    
-    //jbl not used ?
     @Bean
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean( DataSource dataSource  ) throws Exception {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

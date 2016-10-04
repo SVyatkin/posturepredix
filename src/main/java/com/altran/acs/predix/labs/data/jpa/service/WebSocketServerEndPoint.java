@@ -24,7 +24,7 @@ import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudFactory;
 
 import com.altran.acs.predix.labs.data.jpa.domain.Location;
-import com.altran.acs.predix.labs.data.jpa.domain.PosturePredix;
+import com.altran.acs.predix.labs.data.jpa.domain.Sensor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ServerEndpoint(value = "/wss/{nodeId}")
@@ -44,7 +44,6 @@ public class WebSocketServerEndPoint {
 	 * @throws SQLException
 	 */
 
-	//jbl not used ?
 	public DataSource getDbConnection() throws SQLException {
 			CloudFactory cloudFactory = new CloudFactory();
 			Cloud cloud = cloudFactory.getCloud();
@@ -71,32 +70,14 @@ public class WebSocketServerEndPoint {
 	}
 
 	@OnMessage
-	public void onMessage(@PathParam(value = "nodeId") String id, String message, Session session)
+	public void onMessage(@PathParam(value = "nodeId") String nodeId, String message, Session session)
 			throws SQLException, IOException {
 		logger.info("*** Websocket Message : " + message);
-		PosturePredix posture;
-		String infoType = null;
-		try {
-			ObjectMapper objectMapper = new ObjectMapper();
-			String tab [] = id.split("_");
-			if(tab.length==2){
-				infoType = tab[1];
-				System.out.println("tab !!");
-			}		
-			
-			switch (infoType) {
-			case "posture":
-				posture = objectMapper.readValue(message, PosturePredix.class);
-				System.out.println("posture is : "+posture);
-				break;
 
-			default:
-				System.err.println("value not authorized infoType: "+infoType);
-				break;
-			}
+		try {
 			
-			
-			
+			ObjectMapper objectMapper = new ObjectMapper();
+			Sensor sensor = objectMapper.readValue(message, Sensor.class);
 			
 			System.out.println("*** Open Connection");
 			
@@ -107,23 +88,23 @@ public class WebSocketServerEndPoint {
 			
 			System.out.println("*** Open Connection Done: " + dbConnection.getClientInfo());
 			
-			//if (posture.getTimestamp() == null) pos.setTmStmp(new Date());
+			if (sensor.getTmStmp() == null) sensor.setTmStmp(new Date());
 
-//			String insertTableSQL = "INSERT INTO location(id, deviceId, tmStmp, lat, lng) values(nextval( 'hibernate_sequence'),"
-//			       + location.getDeviceId()
-//			+ ",  NOW()" // + location.getTmStmp()
-//			+ ", " + location.getLat()
-//			+ ", " + location.getLng() +")";
+			String insertTableSQL = "INSERT INTO sensor(id, deviceId, tmStmp, name, val) values(nextval( 'hibernate_sequence'),"
+			       + sensor.getDeviceId()
+			+ ",  NOW()" // + location.getTmStmp()
+			+ ", " + "'" + sensor.getName() + "'"
+			+ ", " + sensor.getVal() +")";
 
-			System.out.println("*** run statement");
+			System.out.println("*** run statement: " + insertTableSQL);
 			Statement statement = dbConnection.createStatement();
 
-		//	System.out.println(insertTableSQL); 
+			System.out.println(insertTableSQL); 
 
 			// execute insert SQL stetement
-			//statement.executeUpdate(insertTableSQL);
+			statement.executeUpdate(insertTableSQL);
 
-			System.out.println("*** Record is inserted into Customer table!");
+			System.out.println("*** Record is inserted into Sensor table!");
 
 		} catch (SQLException | IOException e) {
 
@@ -132,9 +113,7 @@ public class WebSocketServerEndPoint {
 
 		} 
 		
-		//TODO add on redis db value
-		
-		String response = "{\"messageId\": " + id + ",\"statusCode\": 202}"; 
+		String response = "{\"messageId\": " + nodeId + ",\"statusCode\": 202}"; 
 		session.getBasicRemote().sendText(response);
 
 	}
