@@ -21,9 +21,10 @@ public class Sensor implements Serializable {
     @NotNull
 	private Long deviceId;
     
-	private Date tmStmp;	
+	private Date timestamp;	
 	private String name;
-	private Double val;
+	private Double value;
+	
 	
 	public Long getId() {
 		return id;
@@ -38,22 +39,37 @@ public class Sensor implements Serializable {
 		this.deviceId = deviceId;
 	}
 
-	public Date getTmStmp() {
-		return tmStmp;
-	}
-	public void setTmStmp(Date tmStmp) {
-		this.tmStmp = tmStmp;
-	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getVal() {
-		return val;
+
+	/**
+	 * @return the timestamp
+	 */
+	public Date getTimestamp() {
+		return this.timestamp;
 	}
-	public void setVal(Double value) {
-		this.val = value;
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
+	/**
+	 * @return the value
+	 */
+	public Double getValue() {
+		return this.value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(Double value) {
+		this.value = value;
+	}
+
 }

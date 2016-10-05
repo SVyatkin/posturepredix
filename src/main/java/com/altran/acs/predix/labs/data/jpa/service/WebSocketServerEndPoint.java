@@ -20,6 +20,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudFactory;
 
@@ -33,6 +34,7 @@ public class WebSocketServerEndPoint {
 	private static Logger logger = LoggerFactory.getLogger(WebSocketServerEndPoint.class);
 	private Connection dbConnection;
 	private DataSource dataSource;
+//	@Autowired  private SensorService sensorService;
 
 	/**
 	 * @param nodeId1
@@ -88,18 +90,20 @@ public class WebSocketServerEndPoint {
 			
 			System.out.println("*** Open Connection Done: " + dbConnection.getClientInfo());
 			
-			if (sensor.getTmStmp() == null) sensor.setTmStmp(new Date());
+			//if (sensor.getTmStmp() == null) sensor.setTimestamp(new Date());
 
 			String insertTableSQL = "INSERT INTO sensor(id, deviceId, tmStmp, name, val) values(nextval( 'hibernate_sequence'),"
 			       + sensor.getDeviceId()
 			+ ",  NOW()" // + location.getTmStmp()
 			+ ", " + "'" + sensor.getName() + "'"
-			+ ", " + sensor.getVal() +")";
+			+ ", " + sensor.getValue() +")";
+			
+			//sensorService.createSensor(sensor);
 
 			System.out.println("*** run statement: " + insertTableSQL);
 			Statement statement = dbConnection.createStatement();
 
-			System.out.println(insertTableSQL); 
+			//System.out.println(insertTableSQL); 
 
 			// execute insert SQL stetement
 			statement.executeUpdate(insertTableSQL);
