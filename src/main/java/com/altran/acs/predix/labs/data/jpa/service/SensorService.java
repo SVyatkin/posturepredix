@@ -37,7 +37,7 @@ public class SensorService {
     
     @Transactional(readOnly = true)
     public  List<Sensor> getLastEvent() {
-    	return em.createQuery("FROM Sensor c WHERE c.id IN (SELECT max(cc.id) FROM Sensor cc GROUP BY deviceid)").getResultList();
+    	return em.createQuery("FROM Sensor c WHERE c.id IN (SELECT max(cc.id) FROM Sensor cc GROUP BY name)").getResultList();
     }
 
     @Transactional(readOnly = true)
