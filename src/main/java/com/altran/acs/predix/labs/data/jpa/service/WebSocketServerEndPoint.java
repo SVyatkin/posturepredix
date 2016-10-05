@@ -34,7 +34,7 @@ public class WebSocketServerEndPoint {
 	private static Logger logger = LoggerFactory.getLogger(WebSocketServerEndPoint.class);
 	private Connection dbConnection;
 	private DataSource dataSource;
-//	@Autowired  private SensorService sensorService;
+	@Autowired  private SensorService sensorService;
 
 	/**
 	 * @param nodeId1
@@ -68,7 +68,8 @@ public class WebSocketServerEndPoint {
 
 	@OnOpen
 	public void onOpen(@PathParam(value = "nodeId") String nodeId, final Session session, EndpointConfig ec) {
-		logger.info("Server: opened... for Node Id : " + nodeId + " : " + session.getId()); 
+		logger.info("Server: opened... for Node Id : " + nodeId + " : " + session.getId());
+		
 	}
 
 	@OnMessage
@@ -94,16 +95,18 @@ public class WebSocketServerEndPoint {
 
 			String insertTableSQL = "INSERT INTO sensor(id, deviceId, tmStmp, name, val) values(nextval( 'hibernate_sequence'),"
 			       + sensor.getDeviceId()
-			+ ",  NOW()" // + location.getTmStmp()
-			+ ", " + "'" + sensor.getName() + "'"
-			+ ", " + sensor.getValue() +")";
+			       + ", "	+"'" + sensor.getTmStmp()+ "'"
+			       + ", " + "'" + sensor.getName() + "'"
+			+ ", " + sensor.getVal() +")";
+						
 			
+
 			//sensorService.createSensor(sensor);
 
-			System.out.println("*** run statement: " + insertTableSQL);
+			//System.out.println("*** run statement: " + insertTableSQL);
 			Statement statement = dbConnection.createStatement();
 
-			//System.out.println(insertTableSQL); 
+			System.out.println(insertTableSQL); 
 
 			// execute insert SQL stetement
 			statement.executeUpdate(insertTableSQL);
